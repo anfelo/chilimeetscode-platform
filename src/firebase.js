@@ -4,14 +4,14 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAUC01RnGK9VihD-sdLNVNLdIIwo67lG1c',
-	authDomain: 'chilimeetscode-3414f.firebaseapp.com',
-	databaseURL: 'https://chilimeetscode-3414f.firebaseio.com',
-	projectId: 'chilimeetscode-3414f',
-	storageBucket: 'chilimeetscode-3414f.appspot.com',
-	messagingSenderId: '779056476450',
-	appId: '1:779056476450:web:8638e6e864571d7f0a757b',
-	measurementId: 'G-QQ4BLX5D10'
+	apiKey: process.env.VUE_APP_FIREBASE_API_KEY + '',
+	authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+	databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
+	projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID + '',
+	storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.VUE_APP_FIREBASE_APP_ID,
+	measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
 
 firebase.initializeApp(firebaseConfig);

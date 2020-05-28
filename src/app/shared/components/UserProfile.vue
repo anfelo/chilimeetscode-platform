@@ -1,7 +1,7 @@
 <template>
 	<div>
 		Logged-in as {{ user.uid }}
-		<button @click="auth.signOut()" class="button">Sign Out</button>
+		<button @click="signOut()" class="button">Sign Out</button>
 	</div>
 </template>
 
@@ -13,6 +13,12 @@ export default {
 		return {
 			auth
 		};
+	},
+	methods: {
+		signOut() {
+			auth.signOut();
+			this.$router.push('login');
+		}
 	},
 	props: ['user']
 };

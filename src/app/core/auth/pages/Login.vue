@@ -5,11 +5,15 @@
 
 		<div v-if="newUser">
 			<h3 class="title">Sign Up for a New Account</h3>
-			<a href="#" class="is-link" @click="newUser = false">Returning User?</a>
+			<button class="button is-text" @click="newUser = false">
+				Returning User?
+			</button>
 		</div>
 		<div v-else>
 			<h3 class="title">Sign In with Email</h3>
-			<a href="#" class="is-link" @click="newUser = true">Create New Account</a>
+			<button class="button is-text" @click="newUser = true">
+				Create New Account
+			</button>
 		</div>
 
 		<div class="field">

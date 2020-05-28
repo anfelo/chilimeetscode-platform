@@ -3,7 +3,7 @@ import App from './app/App.vue';
 import { firestorePlugin } from 'vuefire';
 import VueRouter from 'vue-router';
 import VueCompositionApi from '@vue/composition-api';
-import { router } from './router';
+import router from './router';
 
 import './assets/style/global.scss';
 
