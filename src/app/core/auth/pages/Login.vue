@@ -1,84 +1,71 @@
 <template>
-	<aside class="section">
-		<h3 class="title">Sign in Anonymously</h3>
-		<button @click="signInAnonymously()" class="button">Sign In</button>
+	<div class="modal is-active">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p v-if="newUser" class="modal-card-title">Sign Up for a New Account</p>
+				<p v-else class="modal-card-title">Sign In with Email</p>
+				<button class="delete" aria-label="close" @click="goBack()"></button>
+			</header>
+			<section class="modal-card-body">
+				<div v-if="newUser">
+					<a class="is-link is-pulled-right" @click="newUser = false">Returning User?</a>
+				</div>
+				<div v-else>
+					<a class="is-link is-pulled-right" @click="newUser = true">Create New Account</a>
+				</div>
+				<div class="field">
+					<label class="label">Email</label>
+					<div class="control">
+						<input v-model="email" class="input" type="email" placeholder="Enter email" />
+					</div>
+				</div>
 
-		<div v-if="newUser">
-			<h3 class="title">Sign Up for a New Account</h3>
-			<button class="button is-text" @click="newUser = false">
-				Returning User?
-			</button>
+				<div class="field">
+					<label class="label">Password</label>
+					<div class="control">
+						<input v-model="password" class="input" type="password" placeholder="Enter password" />
+					</div>
+				</div>
+				<p class="has-text-danger" v-if="errorMessage">{{ errorMessage }}</p>
+			</section>
+			<footer class="modal-card-foot">
+				<button
+					class="button is-primary"
+					:class="{ 'is-loading': loading }"
+					@click="signInOrCreateUser()"
+				>{{ newUser ? 'Sign Up' : 'Login' }}</button>
+				<button @click="signInAnonymously()" class="button">Continue Anonymously</button>
+			</footer>
 		</div>
-		<div v-else>
-			<h3 class="title">Sign In with Email</h3>
-			<button class="button is-text" @click="newUser = true">
-				Create New Account
-			</button>
-		</div>
-
-		<div class="field">
-			<label class="label">Email</label>
-			<div class="control">
-				<input
-					v-model="email"
-					class="input"
-					type="email"
-					placeholder="Enter email"
-				/>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">Password</label>
-			<div class="control">
-				<input
-					v-model="password"
-					class="input"
-					type="password"
-					placeholder="Enter password"
-				/>
-			</div>
-		</div>
-
-		<div class="control">
-			<button
-				class="button is-primary"
-				:class="{ 'is-loading': loading }"
-				@click="signInOrCreateUser()"
-			>
-				{{ newUser ? 'Sign Up' : 'Login' }}
-			</button>
-		</div>
-
-		<p class="has-text-danger" v-if="errorMessage">{{ errorMessage }}</p>
-	</aside>
+	</div>
 </template>
 
 <script>
-import { auth } from '../../../../firebase';
+import { auth } from "../../../../firebase";
 
 export default {
 	data() {
 		return {
 			auth,
 			newUser: false,
-			email: '',
-			password: '',
+			email: "",
+			password: "",
 			loading: false,
-			errorMessage: ''
+			errorMessage: ""
 		};
 	},
 	methods: {
 		async signInOrCreateUser() {
 			this.loading = true;
-			this.errorMessage = '';
+			this.errorMessage = "";
 			try {
 				if (this.newUser) {
 					await auth.createUserWithEmailAndPassword(this.email, this.password);
 				} else {
 					await auth.signInWithEmailAndPassword(this.email, this.password);
 				}
-				this.$router.push('home');
+				this.goBack();
 			} catch (error) {
 				this.errorMessage = error.message;
 			}
@@ -86,15 +73,21 @@ export default {
 		},
 		async signInAnonymously() {
 			this.loading = true;
-			this.errorMessage = '';
+			this.errorMessage = "";
 			try {
 				await auth.signInAnonymously();
-				this.$router.push('home');
+				this.goBack();
 			} catch (error) {
 				this.errorMessage = error.message;
 			}
 			this.loading = false;
+		},
+		goBack() {
+			this.$router.go(-1);
 		}
 	}
 };
 </script>
+
+<style>
+</style>

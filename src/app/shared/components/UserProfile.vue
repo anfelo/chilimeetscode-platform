@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { auth } from '../../../firebase';
+import { auth } from "../../../firebase";
 
 export default {
 	data() {
@@ -17,9 +17,8 @@ export default {
 	methods: {
 		signOut() {
 			auth.signOut();
-			this.$router.push('login');
 		}
 	},
-	props: ['user']
+	props: ["user"]
 };
 </script>

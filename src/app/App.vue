@@ -1,17 +1,17 @@
 <template>
-	<div id="app" class="container">
-		<header>
-			<h1 class="title">ChiliMeetsCode</h1>
-			<p class="subtitle">Learning Platform</p>
-		</header>
+	<div id="app">
+		<Navbar />
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
+import Navbar from "./shared/components/Navbar";
 export default {
 	name: "App",
-	components: {}
+	components: {
+		Navbar
+	}
 };
 </script>
 
