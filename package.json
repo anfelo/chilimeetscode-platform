@@ -11,8 +11,13 @@
 		"test": "run-p --race serve cy:run"
 	},
 	"dependencies": {
+		"@vue/composition-api": "^0.5.0",
+		"bulma": "^0.8.2",
 		"core-js": "^3.6.5",
-		"vue": "^2.6.11"
+		"firebase": "^7.14.5",
+		"vue": "^2.6.11",
+		"vue-router": "^3.3.1",
+		"vuefire": "^2.2.2"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.4.0",
@@ -23,7 +28,9 @@
 		"eslint": "^6.7.2",
 		"eslint-plugin-cypress": "^2.11.0",
 		"eslint-plugin-vue": "^6.2.2",
+		"node-sass": "^4.14.1",
 		"npm-run-all": "^4.1.5",
+		"sass-loader": "^8.0.2",
 		"vue-template-compiler": "^2.6.11"
 	},
 	"eslintConfig": {
