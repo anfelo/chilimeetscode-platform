@@ -31,11 +31,12 @@
 			</section>
 			<footer class="modal-card-foot">
 				<button
+					id="sign-in-create"
 					class="button is-primary"
 					:class="{ 'is-loading': loading }"
 					@click="signInOrCreateUser()"
 				>{{ newUser ? 'Sign Up' : 'Login' }}</button>
-				<button @click="signInAnonymously()" class="button">Continue Anonymously</button>
+				<button id="sign-in-anon" class="button" @click="signInAnonymously()">Continue Anonymously</button>
 			</footer>
 		</div>
 	</div>

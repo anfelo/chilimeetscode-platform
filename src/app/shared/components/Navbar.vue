@@ -9,7 +9,7 @@
 					<a>Courses</a>
 				</li>
 				<li>
-					<router-link to="/login">Login</router-link>
+					<router-link to="/login" class="login-button">Login</router-link>
 				</li>
 			</ul>
 		</aside>
